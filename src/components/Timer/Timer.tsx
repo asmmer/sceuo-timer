@@ -107,7 +107,7 @@ export const Timer: React.FC = () => {
 
     useEffect(() => {
         setParsedTime(getParsedTime());
-    }, []);
+    }, [time]);
 
     const timeClass = `timer__time ${(timerState === TimerState.isPaused) ? 'timer__time_paused' : ''}`;
     const playStopAction = (timerState === TimerState.isStoped || 
