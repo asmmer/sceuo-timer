@@ -1,0 +1,68 @@
+$default-color: #202020
+$paused-color: #5f5f5f
+    
+.timer
+    height: 100%
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-around
+
+    &__header
+
+    &__time
+        display: flex
+        justify-content: center
+        align-items: center
+        font-size: 40px
+        font-weight: bold
+        height: 300px
+        width: 300px
+        color: $default-color
+        border-radius: 100%
+        background: linear-gradient(145deg, #ffffff, #e6e6e6)
+        box-shadow: 30px 30px 60px #a8a8a8, -30px -30px 60px #ffffff
+        position: relative
+        transition: .3s ease-in-out color
+
+        &::after
+            content: ''
+            position: absolute
+            height: 80%
+            width: 80%
+            background-color: transparent
+            border-radius: 50%
+            box-shadow: inset -3px -3px 7px #e6e6e6, inset 3px 3px 5px rgba(94, 104, 121, 0.671)
+
+        &_paused
+            color: $paused-color
+    
+    &__controller
+        display: flex
+        align-items: center
+        justify-content: center
+
+    &__button
+        cursor: pointer
+        margin: 30px
+        height: 75px
+        width: 75px
+        font-weight: bold
+        border-radius: 205px
+        background: linear-gradient(145deg, #ffffff, #e6e6e6)
+        box-shadow: 8px 8px 15px #a8a8a8, -8px -8px 15px #ffffff
+        outline: none
+        border: none
+        user-select: none
+        transition: .3s ease-in-out box-shadow
+
+        &:hover
+            box-shadow: 4px 4px 8px #a8a8a8, -4px -4px 8px #ffffff
+
+        &:focus
+            box-shadow: 2px 2px 4px #a8a8a8, -2px -2px 4px #ffffff
+
+        &:disabled
+            box-shadow: none
+            
