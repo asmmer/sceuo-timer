@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './Timer.sass';
+import { Icon, Icons } from '../Icon/Icon';
 
 interface ITimeObject {
     seconds: number;
@@ -52,23 +53,23 @@ export const Timer: React.FC = () => {
      */
     const [time, setTime] = useState(TIME_OBJECT);
 
-    const runTimer = () => {
+    const runTimer = (): void => {
         setTimerState(TimerState.isRunning);
         timer = setInterval(getTick, STANDARD_INTERVAL);
     }
 
-    const pauseTimer = () => {
+    const pauseTimer = (): void => {
         setTimerState(TimerState.isPaused);
         clearInterval(timer);
     }
 
-    const stopTimer = () => {
+    const stopTimer = (): void => {
         setTimerState(TimerState.isStoped);
         setTime(TIME_OBJECT);
         clearInterval(timer);
     }
 
-    const getTick = () => {
+    const getTick = (): void => {
         setTime((time: ITimeObject) => {
             let { hours, minutes, seconds }: ITimeObject = time;
      
@@ -96,9 +97,9 @@ export const Timer: React.FC = () => {
         })
     }
 
-    const getParsedTime = () => {
-        let { hours, minutes, seconds }: ITimeObject = time;
-        let parsedHours = (hours < 10) ? `0${hours}` : `${hours}`,
+    const getParsedTime = (): string => {
+        const { hours, minutes, seconds }: ITimeObject = time;
+        const parsedHours = (hours < 10) ? `0${hours}` : `${hours}`,
             parsedMinutes = (minutes < 10) ? `0${minutes}` : `${minutes}`,
             parsedSeconds = (seconds < 10) ? `0${seconds}` : `${seconds}`
 
@@ -122,15 +123,15 @@ export const Timer: React.FC = () => {
         </div>
         <div className="timer__controller">
             <button className="timer__button" onClick={playStopAction}>
-                {(timerState === TimerState.isStoped) ? 'Start' :
-                 (timerState === TimerState.isPaused) ? 'Continue' : 'Stop'}
+                {(timerState === TimerState.isStoped || 
+                  timerState === TimerState.isPaused) ? <Icon type={Icons.Start}/> : <Icon type={Icons.Stop}/>}
             </button>
             <button
                 className="timer__button"
                 onClick={() => pauseTimer()}
                 disabled={timerState === TimerState.isStoped || timerState === TimerState.isPaused}
             >
-                Pause
+                <Icon type={Icons.Pause}/>
             </button>
         </div>
     </div>
