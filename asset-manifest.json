@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sceuo-timer/static/css/main.d85877e2.chunk.css",
+    "main.css": "/sceuo-timer/static/css/main.86c4e3f8.chunk.css",
     "main.js": "/sceuo-timer/static/js/main.683012f8.chunk.js",
     "main.js.map": "/sceuo-timer/static/js/main.683012f8.chunk.js.map",
     "runtime-main.js": "/sceuo-timer/static/js/runtime-main.8f8c43d6.js",
@@ -8,15 +8,15 @@
     "static/js/2.ef07d639.chunk.js": "/sceuo-timer/static/js/2.ef07d639.chunk.js",
     "static/js/2.ef07d639.chunk.js.map": "/sceuo-timer/static/js/2.ef07d639.chunk.js.map",
     "index.html": "/sceuo-timer/index.html",
-    "precache-manifest.a20dac99867099eaea9cb76208ea807c.js": "/sceuo-timer/precache-manifest.a20dac99867099eaea9cb76208ea807c.js",
+    "precache-manifest.63725b6eae066024f320ccd549ebf9a8.js": "/sceuo-timer/precache-manifest.63725b6eae066024f320ccd549ebf9a8.js",
     "service-worker.js": "/sceuo-timer/service-worker.js",
-    "static/css/main.d85877e2.chunk.css.map": "/sceuo-timer/static/css/main.d85877e2.chunk.css.map",
+    "static/css/main.86c4e3f8.chunk.css.map": "/sceuo-timer/static/css/main.86c4e3f8.chunk.css.map",
     "static/js/2.ef07d639.chunk.js.LICENSE.txt": "/sceuo-timer/static/js/2.ef07d639.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8f8c43d6.js",
     "static/js/2.ef07d639.chunk.js",
-    "static/css/main.d85877e2.chunk.css",
+    "static/css/main.86c4e3f8.chunk.css",
     "static/js/main.683012f8.chunk.js"
   ]
 }
