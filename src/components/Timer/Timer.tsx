@@ -42,7 +42,8 @@ export const Timer: React.FC = () => {
     const 
         [timerState, setTimerState] = useState(TimerState.isStoped),
         [parsedTime, setParsedTime] = useState(""),
-        [time, setTime] = useState(TIME_OBJECT);
+        [time, setTime] = useState(TIME_OBJECT),
+        [isThemeChanging, setIsThemeChanging] = useState(false);
 
     const runTimer = (): void => {
         setTimerState(TimerState.isRunning);
@@ -101,18 +102,22 @@ export const Timer: React.FC = () => {
         setParsedTime(getParsedTime(time));
     }, [time]);
 
-
     useEffect(() => {
         StorageSaver.save(THEME_KEY, theme);
-    }, [theme])
+    }, [theme]);
 
-    const 
+    const
+        timerClass = `timer${(isThemeChanging) ? ' is_theme_changing' : ''}`,
         timeClass = `timer__time timer__time_${theme} ${(timerState === TimerState.isPaused) ? 'timer__time_paused' : ''}`,
         themeIcon = (theme === Themes.Light) ? Icons.Moon : Icons.Sun,
         playStopAction = (timerState !== TimerState.isRunning) ? runTimer : stopTimer,
-        toggleThemeAction = () => dispatch(toggleTheme());
+        toggleThemeAction = () => {
+            setIsThemeChanging(true);
+            dispatch(toggleTheme());
+            setTimeout(() => setIsThemeChanging(false), 300)
+        };
 
-    return <section className="timer">
+    return <section className={timerClass}>
         <h1 className="timer__header">sceuo-timer</h1>
         <div className={timeClass}>
             <p>{parsedTime}</p>
@@ -127,7 +132,10 @@ export const Timer: React.FC = () => {
             >
                 <Icon type={Icons.Pause}/>
             </Button>
-            <Button onClick={toggleThemeAction}>
+            <Button 
+                onClick={toggleThemeAction}
+                disabled={isThemeChanging}
+            >
                 <Icon type={themeIcon}/>
             </Button>
         </div>
