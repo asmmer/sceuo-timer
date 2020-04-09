@@ -1,6 +1,5 @@
-$default-color: rgb(30, 30, 30)
-$paused-color: rgb(100, 100, 100)
-$active-color: rgb(51, 102, 255)
+@import '../constants/themes'
+@import '../constants/colors'
 
 .timer
     height: 100%
@@ -11,19 +10,17 @@ $active-color: rgb(51, 102, 255)
     justify-content: space-around
 
     &__header
+        font-size: 32px
 
     &__time
         display: flex
         justify-content: center
         align-items: center
-        font-size: 40px
         font-weight: bold
+        font-size: 40px
         height: 300px
         width: 300px
-        color: $default-color
         border-radius: 100%
-        background: linear-gradient(145deg, #ffffff, #e6e6e6)
-        box-shadow: 10px 10px 20px #a8a8a8, -10px -10px 20px #ffffff
         position: relative
         transition: .3s ease-in-out color
 
@@ -34,7 +31,21 @@ $active-color: rgb(51, 102, 255)
             width: 80%
             background-color: transparent
             border-radius: 50%
-            box-shadow: inset -3px -3px 7px #e6e6e6, inset 3px 3px 5px rgba(94, 104, 121, 0.671)
+
+        &_light_theme
+            box-shadow: 10px 10px 20px $light_theme_right_shadow, -10px -10px 20px $light_theme_left_shadow
+            background: linear-gradient(145deg, $light_theme_right_gradient, $light_theme_left_gradient)
+
+            &::after
+                box-shadow: inset -3px -3px 7px $light_theme_right_inside_shadow, inset 3px 3px 5px $light_theme_left_inside_shadow
+
+        &_dark_theme
+            box-shadow: 10px 10px 20px $dark_theme_right_shadow, -10px -10px 20px $dark_theme_left_shadow
+            background: linear-gradient(145deg, $dark_theme_right_gradient, $dark_theme_left_gradient)
+
+            &::after
+                box-shadow: inset -3px -3px 7px $dark_theme_right_inside_shadow, inset 3px 3px 5px $dark_theme_left_inside_shadow
+
 
         &_paused
             color: $paused-color

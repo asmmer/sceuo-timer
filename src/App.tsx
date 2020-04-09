@@ -1,13 +1,15 @@
 import React from 'react';
-import './App.css';
 import { Timer } from './components/Timer/Timer';
+import { useSelector } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <Timer/>
-    </div>
-  );
+import './App.sass';
+
+export const App: React.FC = () => {
+	const { theme } = useSelector((state: any) => state.app);
+
+	return <>
+		<main className={`App App_${theme}`}>
+			<Timer />
+		</main>
+	</>
 }
-
-export default App;

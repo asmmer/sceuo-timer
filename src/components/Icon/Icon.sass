@@ -1,6 +1,15 @@
+@import '../constants/themes'
+    
 .icon
     display: flex
     justify-content: center
+    transition: .3s ease-in-out all
+
+    &_light_theme
+        fill: $light_theme_text_color
+    
+    &_dark_theme
+        fill: $dark_theme_text_color
 
     svg
         width: 30px

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Icon, Icons } from '../Icon/Icon';
+import { Button } from '../Button/Button';
+import { Themes } from '../constants/interfaces';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from '../../store/app/actions';
+import StorageSaver from '../../helpers/storage-saver';
+import { THEME_KEY } from '../../store/app/reducers';
 
 import './Timer.sass';
-import { Icon, Icons } from '../Icon/Icon';
 
 interface ITimeObject {
     seconds: number;
@@ -9,49 +15,34 @@ interface ITimeObject {
     hours: number;
 }
 
-/**
- * Constants.
- */
-const STANDARD_INTERVAL = 1000;
-const HOURS_LIMIT = 100;
-const MINUTES_LIMIT = 60;
-const SECONDS_LIMIT = 60;
-const TIME_OBJECT: ITimeObject = {
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-}
+const 
+    STANDARD_INTERVAL = 1000,
+    HOURS_LIMIT = 100,
+    MINUTES_LIMIT = 60,
+    SECONDS_LIMIT = 60,
+    TIME_OBJECT: ITimeObject = {
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+    }
 
-/**
- * Timer states.
- */
 enum TimerState {
     isStoped,
     isRunning,
     isPaused
 }
 
-/**
- * setInterval object.
- */
 let timer: NodeJS.Timeout;
 
 export const Timer: React.FC = () => {
+    const 
+        dispatch = useDispatch(),
+        { theme } = useSelector((state: any) => state.app);
 
-    /**
-     * State of timer.
-     */
-    const [timerState, setTimerState] = useState(TimerState.isStoped);
-
-    /**
-     * Parsed time for user.
-     */
-    const [parsedTime, setParsedTime] = useState("");
-
-    /**
-     * Time object.
-     */
-    const [time, setTime] = useState(TIME_OBJECT);
+    const 
+        [timerState, setTimerState] = useState(TimerState.isStoped),
+        [parsedTime, setParsedTime] = useState(""),
+        [time, setTime] = useState(TIME_OBJECT);
 
     const runTimer = (): void => {
         setTimerState(TimerState.isRunning);
@@ -97,9 +88,9 @@ export const Timer: React.FC = () => {
         })
     }
 
-    const getParsedTime = (): string => {
-        const { hours, minutes, seconds }: ITimeObject = time;
-        const parsedHours = (hours < 10) ? `0${hours}` : `${hours}`,
+    const getParsedTime = ({ hours, minutes, seconds }: ITimeObject): string => {
+        const 
+            parsedHours = (hours < 10) ? `0${hours}` : `${hours}`,
             parsedMinutes = (minutes < 10) ? `0${minutes}` : `${minutes}`,
             parsedSeconds = (seconds < 10) ? `0${seconds}` : `${seconds}`
 
@@ -107,32 +98,38 @@ export const Timer: React.FC = () => {
     }
 
     useEffect(() => {
-        setParsedTime(getParsedTime());
+        setParsedTime(getParsedTime(time));
     }, [time]);
 
-    const timeClass = `timer__time ${(timerState === TimerState.isPaused) ? 'timer__time_paused' : ''}`;
-    const playStopAction = (timerState === TimerState.isStoped || 
-                            timerState === TimerState.isPaused) ? () => runTimer() : () => stopTimer()
 
-    return <div className="timer">
-        <div className="timer__header">
-            <h1>sceuo-timer</h1>
-        </div>
+    useEffect(() => {
+        StorageSaver.save(THEME_KEY, theme);
+    }, [theme])
+
+    const 
+        timeClass = `timer__time timer__time_${theme} ${(timerState === TimerState.isPaused) ? 'timer__time_paused' : ''}`,
+        themeIcon = (theme === Themes.Light) ? Icons.Moon : Icons.Sun,
+        playStopAction = (timerState !== TimerState.isRunning) ? runTimer : stopTimer,
+        toggleThemeAction = () => dispatch(toggleTheme());
+
+    return <section className="timer">
+        <h1 className="timer__header">sceuo-timer</h1>
         <div className={timeClass}>
-            {parsedTime}
+            <p>{parsedTime}</p>
         </div>
         <div className="timer__controller">
-            <button className="timer__button" onClick={playStopAction}>
-                {(timerState === TimerState.isStoped || 
-                  timerState === TimerState.isPaused) ? <Icon type={Icons.Start}/> : <Icon type={Icons.Stop}/>}
-            </button>
-            <button
-                className="timer__button"
-                onClick={() => pauseTimer()}
-                disabled={timerState === TimerState.isStoped || timerState === TimerState.isPaused}
+            <Button onClick={playStopAction}>
+                {timerState !== TimerState.isRunning ? <Icon type={Icons.Start}/> : <Icon type={Icons.Stop}/>}
+            </Button>
+            <Button 
+                onClick={pauseTimer}
+                disabled={timerState !== TimerState.isRunning}
             >
                 <Icon type={Icons.Pause}/>
-            </button>
+            </Button>
+            <Button onClick={toggleThemeAction}>
+                <Icon type={themeIcon}/>
+            </Button>
         </div>
-    </div>
+    </section>
 }

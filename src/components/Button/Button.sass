@@ -1,0 +1,45 @@
+@import '../constants/themes'
+@import '../constants/colors'
+    
+.base_button
+    cursor: pointer
+    margin: 25px
+    height: 75px
+    width: 75px
+    font-weight: bold
+    border-radius: 205px
+    background: linear-gradient(145deg, #ffffff, #e6e6e6)
+    box-shadow: 8px 8px 15px #a8a8a8, -8px -8px 15px #ffffff
+    outline: none
+    border: none
+    user-select: none
+    -webkit-tap-highlight-color: transparent
+    transition: .3s ease-in-out box-shadow
+
+    &_light_theme
+        box-shadow: 8px 8px 15px $light_theme_right_shadow, -8px -8px 15px $light_theme_left_shadow
+        background: linear-gradient(145deg, $light_theme_right_gradient, $light_theme_left_gradient)
+
+        &:hover
+            box-shadow: 4px 4px 8px $light_theme_right_shadow, -4px -4px 8px $light_theme_left_shadow
+
+        &:focus
+            box-shadow: 2px 2px 4px $light_theme_right_shadow, -2px -2px 4px $light_theme_left_shadow
+
+    &_dark_theme
+        box-shadow: 8px 8px 15px $dark_theme_right_shadow, -8px -8px 15px $dark_theme_left_shadow
+        background: linear-gradient(145deg, $dark_theme_right_gradient, $dark_theme_left_gradient)
+
+        &:hover
+            box-shadow: 4px 4px 8px $dark_theme_right_shadow, -4px -4px 8px $dark_theme_left_shadow
+
+        &:focus
+            box-shadow: 2px 2px 4px $dark_theme_right_shadow, -2px -2px 4px $dark_theme_left_shadow
+
+    &:disabled
+        cursor: initial
+        box-shadow: none
+
+        .icon
+            svg
+                fill: $paused-color

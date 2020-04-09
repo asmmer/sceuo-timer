@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-html, body, #root, .App {
+html, body, #root {
   height: 100%;
 }
 
 * {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Open Sans',
-    sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
