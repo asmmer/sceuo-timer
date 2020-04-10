@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Icon, Icons } from '../Icon/Icon';
 import { Button } from '../Button/Button';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { Themes } from '../constants/interfaces';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../store/app/actions';
@@ -8,6 +9,7 @@ import StorageSaver from '../../helpers/storage-saver';
 import { THEME_KEY } from '../../store/app/reducers';
 
 import './Timer.sass';
+import 'react-circular-progressbar/dist/styles.css';
 
 interface ITimeObject {
     seconds: number;
@@ -20,6 +22,9 @@ const
     HOURS_LIMIT = 100,
     MINUTES_LIMIT = 60,
     SECONDS_LIMIT = 60,
+    PROGRESS_BAR_TEXT_SIZE = "15px",
+    PROGRESS_BAR_STROKE_COLOR = 'RGB(5, 105, 203)',
+    PROGRESS_BAR_STROKE_WIDTH = 7.5,
     TIME_OBJECT: ITimeObject = {
         hours: 0,
         minutes: 0,
@@ -120,7 +125,19 @@ export const Timer: React.FC = () => {
     return <section className={timerClass}>
         <h1 className="timer__header">sceuo-timer</h1>
         <div className={timeClass}>
-            <p>{parsedTime}</p>
+            <CircularProgressbar 
+                value={time.seconds}
+                text={parsedTime}
+                minValue={0}
+                maxValue={SECONDS_LIMIT}
+                strokeWidth={PROGRESS_BAR_STROKE_WIDTH}
+                styles={buildStyles({
+                    trailColor: 'transparent',
+                    pathColor: PROGRESS_BAR_STROKE_COLOR,
+                    textSize: PROGRESS_BAR_TEXT_SIZE,
+                    textColor: 'inherit'
+                })}
+            />
         </div>
         <div className="timer__controller">
             <Button onClick={playStopAction}>

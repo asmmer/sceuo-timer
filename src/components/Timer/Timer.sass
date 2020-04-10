@@ -20,6 +20,7 @@
         font-size: 40px
         height: 300px
         width: 300px
+        padding: 10px
         border-radius: 100%
         position: relative
         transition: .3s ease-in-out color
@@ -27,39 +28,27 @@
         &::after
             content: ''
             position: absolute
-            height: 80%
-            width: 80%
+            height: 75%
+            width: 75%
             background-color: transparent
             border-radius: 50%
 
         &_light_theme
-            box-shadow: 10px 10px 20px $light_theme_right_shadow, -10px -10px 20px $light_theme_left_shadow
+            box-shadow: inset -3px -3px 7px $light_theme_right_inside_shadow, inset 3px 3px 5px $light_theme_left_inside_shadow
             background: linear-gradient(145deg, $light_theme_right_gradient, $light_theme_left_gradient)
 
             &::after
-                box-shadow: inset -3px -3px 7px $light_theme_right_inside_shadow, inset 3px 3px 5px $light_theme_left_inside_shadow
+                box-shadow: 10px 10px 20px $light_theme_right_shadow, -10px -10px 20px $light_theme_left_shadow
 
         &_dark_theme
-            box-shadow: 10px 10px 20px $dark_theme_right_shadow, -10px -10px 20px $dark_theme_left_shadow
+            box-shadow: inset -3px -3px 7px $dark_theme_right_inside_shadow, inset 3px 3px 5px $dark_theme_left_inside_shadow
             background: linear-gradient(145deg, $dark_theme_right_gradient, $dark_theme_left_gradient)
 
             &::after
-                box-shadow: inset -3px -3px 7px $dark_theme_right_inside_shadow, inset 3px 3px 5px $dark_theme_left_inside_shadow
-
+                box-shadow: 10px 10px 20px $dark_theme_right_shadow, -10px -10px 20px $dark_theme_left_shadow
 
         &_paused
             color: $paused-color
-    
-    &__progress-bar
-        height: 300px
-        width: 300px
-
-        circle
-            fill: transparent
-
-        path
-            stroke: $active-color
-            transition: 1s ease-in-out all
     
     &__controller
         display: flex
