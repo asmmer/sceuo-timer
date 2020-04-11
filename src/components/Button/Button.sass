@@ -17,24 +17,20 @@
     transition: .3s ease-in-out box-shadow
 
     &_light_theme
+        border: solid 1px $light_theme_border_color
         box-shadow: 8px 8px 15px $light_theme_right_shadow, -8px -8px 15px $light_theme_left_shadow
         background: linear-gradient(145deg, $light_theme_right_gradient, $light_theme_left_gradient)
 
-        &:hover
+        &:focus
             box-shadow: 4px 4px 8px $light_theme_right_shadow, -4px -4px 8px $light_theme_left_shadow
 
-        &:focus
-            box-shadow: 2px 2px 4px $light_theme_right_shadow, -2px -2px 4px $light_theme_left_shadow
-
     &_dark_theme
+        border: solid 1px $dark_theme_border_color
         box-shadow: 8px 8px 15px $dark_theme_right_shadow, -8px -8px 15px $dark_theme_left_shadow
         background: linear-gradient(145deg, $dark_theme_right_gradient, $dark_theme_left_gradient)
 
-        &:hover
-            box-shadow: 4px 4px 8px $dark_theme_right_shadow, -4px -4px 8px $dark_theme_left_shadow
-
         &:focus
-            box-shadow: 2px 2px 4px $dark_theme_right_shadow, -2px -2px 4px $dark_theme_left_shadow
+            box-shadow: 4px 4px 8px $dark_theme_right_shadow, -4px -4px 8px $dark_theme_left_shadow
 
     &:disabled
         cursor: initial

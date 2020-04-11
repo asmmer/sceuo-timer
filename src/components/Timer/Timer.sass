@@ -34,18 +34,22 @@
             border-radius: 50%
 
         &_light_theme
-            box-shadow: inset -3px -3px 7px $light_theme_right_inside_shadow, inset 3px 3px 5px $light_theme_left_inside_shadow
+            border: solid 1px $light_theme_border_color
+            box-shadow: 8px 8px 15px $light_theme_right_shadow, -8px -8px 15px $light_theme_left_shadow, inset 3px 3px 5px $light_theme_left_inside_shadow
             background: linear-gradient(145deg, $light_theme_right_gradient, $light_theme_left_gradient)
 
             &::after
-                box-shadow: 10px 10px 20px $light_theme_right_shadow, -10px -10px 20px $light_theme_left_shadow
+                border: solid 1px $light_theme_border_color
+                box-shadow: 5px 5px 10px $light_theme_right_shadow
 
         &_dark_theme
-            box-shadow: inset -3px -3px 7px $dark_theme_right_inside_shadow, inset 3px 3px 5px $dark_theme_left_inside_shadow
+            border: solid 1px $dark_theme_border_color
+            box-shadow: 8px 8px 15px $dark_theme_right_shadow, -8px -8px 15px $dark_theme_left_shadow, inset 3px 3px 5px $dark_theme_left_inside_shadow
             background: linear-gradient(145deg, $dark_theme_right_gradient, $dark_theme_left_gradient)
 
             &::after
-                box-shadow: 10px 10px 20px $dark_theme_right_shadow, -10px -10px 20px $dark_theme_left_shadow
+                border: solid 1px $dark_theme_border_color
+                box-shadow: 5px 5px 10px $dark_theme_right_shadow
 
         &_paused
             color: $paused-color
