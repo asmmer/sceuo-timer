@@ -1,9 +1,9 @@
 export default class StorageSaver {
-    public static save = (key: string, value: object): void => {
+    static save = (key: string, value: unknown): void => {
         localStorage.setItem(key, JSON.stringify(value));
     }
 
-    public static load = (key: string): object | null => {
+    static get = (key: string): object | null => {
         const loadingData = localStorage.getItem(key);
 
         if (loadingData) {
@@ -13,7 +13,7 @@ export default class StorageSaver {
         return null;
     }
 
-    public static clear = (): void => {
+    static clear = (): void => {
         localStorage.clear();
     }
 }

@@ -1,23 +1,15 @@
 import { APP_ACTIONS } from "./actions";
-import { Themes } from "../../components/constants/interfaces";
-import StorageSaver from "../../helpers/storage-saver";
+import { Themes as Theme } from "../../components/constants/interfaces";
+import StorageSaver from "../../utils/StorageSaver";
 
 interface IInitialState {
-    theme: Themes;
+    theme: Theme | object;
 }
 
 export const THEME_KEY = "theme";
 
-const getCurrentTheme = (): Themes => {
-    let currentTheme: any = StorageSaver.load(THEME_KEY);
-
-    if (currentTheme === null) {
-        currentTheme = Themes.Light;
-
-        StorageSaver.save(THEME_KEY, currentTheme);
-    }
-
-    return currentTheme;
+const getCurrentTheme = (): Theme | object => {
+    return StorageSaver.get(THEME_KEY) || Theme.Light;
 }
 
 const initialState: IInitialState = {
@@ -28,7 +20,7 @@ export const appReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case APP_ACTIONS.TOGGLE_THEME: {
             return {
-                theme: (state.theme === Themes.Light) ? Themes.Dark : Themes.Light
+                theme: (state.theme === Theme.Light) ? Theme.Dark : Theme.Light
             }
         }
         default: {
