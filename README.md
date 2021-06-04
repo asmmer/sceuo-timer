@@ -1,5 +1,4 @@
-https://asmmer.github.io/sceuo-timer/
-# sceuo-timer
+# [sceuo-timer](aysommer.github.io/sceuo-timer/)
 
 A simple stopwatch in the design of noomorphism.
 
