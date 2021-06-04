@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Icon, Icons } from '../Icon/Icon';
-import { Button } from '../Button/Button';
+import { Icon, Icons } from './Icon';
+import { Button } from './Button';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { Themes } from '../constants/interfaces';
+import { Themes } from 'common/interfaces';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleTheme } from '../../store/app/actions';
-import StorageSaver from '../../utils/StorageSaver';
-import { THEME_KEY } from '../../store/app/reducers';
-import { TRootState } from '../../interfaces/interfaces';
+import { toggleTheme } from 'store/app/actions';
+import StorageSaver from 'utils/StorageSaver';
+import { THEME_KEY } from 'store/app/reducers';
+import { TRootState } from 'common/interfaces';
 
-import './Timer.sass';
+import './Timer/Timer.css';
 import 'react-circular-progressbar/dist/styles.css';
 
 interface ITimeObject {
@@ -50,7 +50,7 @@ export const Timer: React.FC = () => {
     const getTick = useCallback(() => {
         setTime((time: ITimeObject) => {
             let { hours, minutes, seconds } = time;
-     
+
             seconds++;
 
             if (seconds > SECONDS_LIMIT - 1) {
@@ -108,7 +108,7 @@ export const Timer: React.FC = () => {
     }, [theme]);
 
     const timerClass = `timer${(isThemeChanging) ? ' is_theme_changing' : ''}`;
-    const timeClass = `timer__time timer__time_${theme} ${(timerState === TimerState.isPaused) ? 'timer__time_paused' : ''}`;
+    const timeClass = `timer__time ${(timerState === TimerState.isPaused) ? 'timer__time_paused' : ''}`;
     const themeIcon = (theme === Themes.Light) ? Icons.Moon : Icons.Sun;
 
     const playStopAction = (timerState !== TimerState.isRunning) ? runTimer : stopTimer;
@@ -122,7 +122,7 @@ export const Timer: React.FC = () => {
         <section className={timerClass}>
             <h1 className="timer__header">sceuo-timer</h1>
             <div className={timeClass}>
-                <CircularProgressbar 
+                <CircularProgressbar
                     value={time.seconds}
                     text={parsedTime}
                     minValue={0}
@@ -138,19 +138,19 @@ export const Timer: React.FC = () => {
             </div>
             <div className="timer__controller">
                 <Button onClick={playStopAction}>
-                    {timerState !== TimerState.isRunning ? <Icon type={Icons.Start}/> : <Icon type={Icons.Stop}/>}
+                    {timerState !== TimerState.isRunning ? <Icon type={Icons.Start} /> : <Icon type={Icons.Stop} />}
                 </Button>
-                <Button 
+                <Button
                     onClick={pauseTimer}
                     disabled={timerState !== TimerState.isRunning}
                 >
-                    <Icon type={Icons.Pause}/>
+                    <Icon type={Icons.Pause} />
                 </Button>
-                <Button 
+                <Button
                     onClick={toggleThemeAction}
                     disabled={isThemeChanging}
                 >
-                    <Icon type={themeIcon}/>
+                    <Icon type={themeIcon} />
                 </Button>
             </div>
         </section>

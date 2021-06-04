@@ -7,15 +7,16 @@ import rootReducer from './store/reducers';
 import * as serviceWorker from './serviceWorker';
 
 import './index.css';
+import './themes.css';
 
 const store = createStore(
-	rootReducer
+  rootReducer
 );
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App/>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

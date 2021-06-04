@@ -1,0 +1,10 @@
+.icon {
+    display: flex;
+    justify-content: center;
+    transition: 0.3s ease-in-out all;
+    fill: var(--text_color);
+}
+
+.icon svg {
+    width: 30px;
+}

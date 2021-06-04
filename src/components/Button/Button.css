@@ -1,0 +1,31 @@
+.base_button {
+    cursor: pointer;
+    margin: 20px;
+    height: 75px;
+    width: 75px;
+    font-weight: bold;
+    border-radius: 205px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 8px 8px 15px #a8a8a8, -8px -8px 15px #ffffff;
+    outline: none;
+    border: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: 0.3s ease-in-out box-shadow;
+    border: solid 1px var(--border);
+    box-shadow: 8px 8px 15px var(--right_shadow), -8px -8px 15px var(--left_shadow);
+    background: linear-gradient(145deg, var(--right_gradient), var(--left_gradient));
+}
+
+.base_button:focus {
+    box-shadow: 4px 4px 8px var(--right_shadow), -4px -4px 8px var(--left_shadow);
+}
+
+.base_button:disabled {
+    cursor: initial;
+    box-shadow: none;
+}
+
+.base_button:disabled .icon svg {
+    fill: var(--paused-color);
+}
